@@ -11,6 +11,7 @@ supported agentic coding tools.
 - **[Gemini CLI](#gemini-cli)** — extension + `SKILL.md` files in `gemini-cli/`
 - **[OpenCode](#opencode)** — `.md` agent files in `opencode/`
 - **[OpenClaw](#openclaw)** — `SOUL.md` + `AGENTS.md` + `IDENTITY.md` workspaces
+- **[Codex](#codex)** — global `SKILL.md` wrappers in `~/.codex/skills/`
 - **[Cursor](#cursor)** — `.mdc` rule files in `cursor/`
 - **[Aider](#aider)** — `CONVENTIONS.md` in `aider/`
 - **[Windsurf](#windsurf)** — `.windsurfrules` in `windsurf/`
@@ -27,6 +28,7 @@ supported agentic coding tools.
 ./scripts/install.sh --tool copilot
 ./scripts/install.sh --tool openclaw
 ./scripts/install.sh --tool claude-code
+./scripts/install.sh --tool codex
 
 # Gemini CLI needs generated integration files on a fresh clone
 ./scripts/convert.sh --tool gemini-cli
@@ -134,6 +136,20 @@ Then install them:
 ```
 
 See [openclaw/README.md](openclaw/README.md) for details.
+
+---
+
+## Codex
+
+Each agent becomes a globally available Codex skill prefixed with `agency-`.
+The installer writes generated wrappers into `~/.codex/vendor_imports/skills/agency-agents/`
+and links them into `~/.codex/skills/`.
+
+```bash
+./scripts/install.sh --tool codex
+```
+
+See [codex/README.md](codex/README.md) for details.
 
 ---
 
