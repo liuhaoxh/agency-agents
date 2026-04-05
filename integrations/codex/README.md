@@ -36,18 +36,32 @@ python3 ./scripts/install_codex.py --repo-root /path/to/agency-agents
 Recommended git remote layout for a Codex-adapted fork:
 
 ```bash
-git remote set-url origin https://github.com/liuhaoxh/agency-agents.git
+git remote set-url origin git@github.com:liuhaoxh/agency-agents.git
 git remote add upstream https://github.com/msitarzewski/agency-agents.git
 ```
 
-Then keep the fork up to date with:
+Use SSH for `origin` if your machine has GitHub SSH configured. This avoids HTTPS
+TLS issues such as `LibreSSL SSL_connect: SSL_ERROR_SYSCALL`.
+
+## Sync From Upstream
+
+From your Codex environment, use:
+
+```bash
+rtk proxy git -C ~/.codex/vendor_imports/agency-agents fetch upstream
+rtk proxy git -C ~/.codex/vendor_imports/agency-agents merge upstream/main
+rtk proxy sh -lc 'cd ~/.codex/vendor_imports/agency-agents && ./scripts/install.sh --tool codex --no-interactive'
+```
+
+If you are already inside the repo, the shorter form also works:
 
 ```bash
 git fetch upstream
 git merge upstream/main
 ```
 
-After pulling updates, rerun:
+After pulling updates, rerun the Codex installer so the generated `agency-*`
+skills are refreshed:
 
 ```bash
 ./scripts/install.sh --tool codex
